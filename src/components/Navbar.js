@@ -2,19 +2,19 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { RxHamburgerMenu } from "react-icons/rx";
 import CategoryDropdown from './CategoryDropdown';
+export const navbarItems = [
+  { name: 'Kadın' },
+  { name: 'Erkek' },
+  { name: 'Anne & Çocuk' },
+  { name: 'Ev & Yaşam' },
+  { name: 'Süpermarket' },
+  { name: 'Kozmetik' },
+  { name: 'Ayakkabı & Çanta' },
+  { name: 'Elektronik' },
+  { name: 'Çok Satanlar', icon: '/icons/cokSatanlar.svg' },
+  { name: 'Flaş Ürünler', icon: '/icons/flas.svg' },
+];
 const Navbar = () => {
-  const navbarItems = [
-    { name: 'Kadın' },
-    { name: 'Erkek' },
-    { name: 'Anne & Çocuk' },
-    { name: 'Ev & Yaşam' },
-    { name: 'Süpermarket' },
-    { name: 'Kozmetik' },
-    { name: 'Ayakkabı & Çanta' },
-    { name: 'Elektronik' },
-    { name: 'Çok Satanlar', icon: '/icons/cokSatanlar.svg' },
-    { name: 'Flaş Ürünler', icon: '/icons/flas.svg' },
-  ];
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(null);
   const handleItemClick = (name) => {

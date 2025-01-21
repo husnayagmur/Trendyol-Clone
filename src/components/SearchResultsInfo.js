@@ -6,6 +6,9 @@ import { BsFillBoxFill } from "react-icons/bs";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { MdOutlineStorefront } from "react-icons/md";
 import Products from './Products';
+export const options = [
+  "Önerilen","En düşük fiyat","En yüksek fiyat","En çok satan","En favoriler","En yeniler","En çok değerlendirilen",
+  ];
 const SearchResultsInfo = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Önerilen");
@@ -17,9 +20,6 @@ const SearchResultsInfo = () => {
     setSelectedOption(option);
     setIsOpen(false);
   };
-  const options = [
-    "Önerilen","En düşük fiyat","En yüksek fiyat","En çok satan","En favoriler","En yeniler","En çok değerlendirilen",
-    ];
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft((prevTime) => {
@@ -66,7 +66,7 @@ const SearchResultsInfo = () => {
         </div>
       </div>
       <div className="flex justify-center mt-2 space-x-3 ">
-        <div className="lg:flex space-x-4 font-normal text-dark-gray border-b -ml-10 hidden">
+        <div className="lg:flex space-x-6 font-normal text-dark-gray border-b -ml-10 hidden">
           <button
             className="rounded-3xl border border-white font-source-sans-pro px-4 py-1.5 text-sm text-dark-black flex items-center space-x-2 bg-gradient-to-r from-peach to-orange-pink hover:border-dark-peach whitespace-nowrap w-[25%] mb-[1.5%] h-8"
           >

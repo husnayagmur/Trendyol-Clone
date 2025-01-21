@@ -4,7 +4,6 @@ import products from '../data/baby-clothing-products';
 import { GoHeart } from "react-icons/go";
 import { FaStar, FaStarHalfStroke } from "react-icons/fa6";
 import { motion } from 'framer-motion';
-
 const Products = () => {
   const [showReviews, setShowReviews] = useState(false);
   useEffect(() => {
@@ -14,14 +13,14 @@ const Products = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 p-4 h-auto">
+    <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 p-4 h-auto max-w-7xl">
       {products.map((product) => (
         <div key={product.id} className="flex justify-center">
-          <div className="relative w-[500px] lg:w-full lg:max-w-[240px] lg:h-[450px] md:h-[490px] border border-gray-200 rounded-md flex flex-col items-center justify-start">
+          <div className="relative lg:w-5/7 lg:h-6/7 border border-gray-200 rounded-md flex flex-col items-center justify-start">
             <img
               src={product.image}
               alt={product.name}
-              className="object-cover w-full lg:h-[230px] md:h-[290px]"
+              className="object-cover w-full lg:h-4/6"
             />
             <div className="absolute top-2 right-2 border rounded-full w-11 h-11 flex justify-center items-center bg-white shadow-lg hover:text-orange-500">
               <GoHeart size={21} className="text-dark-gray hover:text-orange" />
@@ -139,7 +138,6 @@ const Products = () => {
                       <span className="text-[12px] text-dark-gray">{product.coupon}</span>
                     </div>
                   )}
-
                   {product.buyMore && (
                     <div className="bg-lihgt-orange rounded-md  flex flex-row items-center space-x-1 p-0.5">
                       <img
@@ -152,7 +150,6 @@ const Products = () => {
                   )}
                 </div>
               )}
-
             </div>
           </div>
         </div>

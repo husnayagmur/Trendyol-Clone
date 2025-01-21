@@ -7,7 +7,9 @@ import { GrFavorite } from "react-icons/gr";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { motion } from "framer-motion";
 import { RxHamburgerMenu } from "react-icons/rx";
-import Mobile from './Mobile';
+import HeaderNav from './HeaderNav';
+import { allCategories } from '../components/CategoryDropdown';
+import { FaChevronRight } from "react-icons/fa6";
 const Header = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   useEffect(() => {
@@ -23,13 +25,15 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   return (
     <div>
       <motion.div
         initial={{ y: "-100%" }}
         animate={{ y: showNavbar ? 0 : "-100%" }}
         transition={{ duration: 0.2 }}
-        className="fixed top-0 left-0 w-full bg-light-gray z-50"
+        className="lg:fixed top-0 left-0 w-full bg-light-gray z-50 lg:block hidden"
       >
         <div className="flex justify-between items-center p-2 bg-light-gray border-none mt-0 bg-white z-10 mx-auto w-full ">
           <div className="flex items-center space-x-4">
@@ -71,9 +75,35 @@ const Header = () => {
       </div>
       <div className="relative flex items-center lg:justify-center md:justify-between sm:justify-between justify-between mx-auto max-w-screen-xl space-x-16 cursor-pointer lg:border-none border-t-2 border-b-2 px-2">
         <div className="lg:text-5xl flex flex-row md:text-4xl text-3xl font-semibold mr-[8%] text-dark-gray py-2">
-          <div className='flex flex-col lg:hidden block'>
-            <RxHamburgerMenu className='' />
-            <p className='text-xs mt-0 font-bold'>menü</p>
+          <div className="flex flex-col lg:hidden block">
+            <RxHamburgerMenu
+              className="cursor-pointer"
+              size={23}
+              onClick={toggleMenu}
+            />
+            <p className="text-xs mt-0 font-bold">menü</p>
+            <ul
+              className={`fixed top-0 left-0 w-64 z-10 h-full bg-white shadow-lg transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+            >
+              {allCategories.map((category, index) => (
+                <li
+                  key={index}
+                  className="flex items-center justify-between px-4 py-4 cursor-pointer border-b"
+                >
+                  <div className="flex items-center space-x-3">
+                    <img
+                      src={category.icon}
+                      alt={category.name}
+                      className="w-6 h-6"
+                    />
+                    <span className="text-mediumDark-gray text-sm font-semibold">
+                      {category.name}
+                    </span>
+                  </div>
+                  <FaChevronRight className="text-medium-grey text-sm" />
+                </li>
+              ))}
+            </ul>
           </div>
           <Link href="/">trendyol</Link>
         </div>
@@ -88,20 +118,20 @@ const Header = () => {
         <div className="flex lg:space-x-4 space-x-8 lg:text-dark-gray text-black text-xs font-bold ">
           <Link href="#" className="flex items-center space-x-2 group cursor-pointer">
             <LuUserRound className='lg:block hidden group-hover:text-orange duration-500 group-hover:fill-current lg:text-lg text-3xl' />
-            <CgSearch className='lg:hidden  block group-hover:text-orange duration-500 group-hover:fill-current lg:text-lg md:text-4xl text-2xl' />
+            <CgSearch className='lg:hidden  block group-hover:text-orange duration-500 group-hover:fill-current lg:text-lg text-2xl' />
             <span className='group-hover:text-orange lg:block hidden'>Giriş Yap</span>
           </Link>
           <Link href="#" className="flex items-center space-x-2 group cursor-pointer">
-            <GrFavorite className='group-hover:text-orange duration-500 group-hover:fill-current lg:text-lg  md:text-4xl text-2xl' />
+            <GrFavorite className='group-hover:text-orange duration-500 group-hover:fill-current lg:text-lg   text-2xl' />
             <span className='group-hover:text-orange lg:block hidden'>Favorilerim</span>
           </Link>
           <Link href="#" className="flex items-center space-x-2 group cursor-pointer">
-            <HiOutlineShoppingCart className='group-hover:text-orange duration-500 group-hover:fill-current lg:text-lg md:text-4xl text-2xl' />
+            <HiOutlineShoppingCart className='group-hover:text-orange duration-500 group-hover:fill-current lg:text-lg  text-2xl' />
             <span className='group-hover:text-orange lg:block hidden'>Sepetim</span>
           </Link>
         </div>
       </div>
-      <Mobile className='lg:hidden block'/>
+      <HeaderNav className='lg:hidden block' />
     </div>
   );
 };

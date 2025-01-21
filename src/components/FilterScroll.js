@@ -67,26 +67,26 @@ const FilterScroll = () => {
                     />
                   )}
                   {category.id === 6 && (
-                   <div className="flex items-center mt-3 w-full space-x-1">
-                   <div className="flex items-center space-x-1">
-                     <input
-                       type="text"
-                       placeholder="En Az"
-                       className="w-full p-1 px-1 pl-2 border border-gray-300 rounded-full text-xs focus:outline-none focus:border-gray-300"
-                     />
-                     <span className="flex items-center text-sm">-</span>
-                     <input
-                       type="text"
-                       placeholder="En Çok"
-                       className="w-full p-1 px-1 pl-2 border border-gray-300 rounded-full text-xs focus:outline-none focus:border-gray-300"
-                     />
-                   </div>
-                   <div className="ml-auto bg-gray-200 rounded-sm flex">
-                     <GrSearch className="text-white text-2xl p-1" />
-                   </div>
-                 </div>
-                 
-                 
+                    <div className="flex items-center mt-3 w-full space-x-1">
+                      <div className="flex items-center space-x-1">
+                        <input
+                          type="text"
+                          placeholder="En Az"
+                          className="w-full p-1 px-1 pl-2 border border-gray-300 rounded-full text-xs focus:outline-none focus:border-gray-300"
+                        />
+                        <span className="flex items-center text-sm">-</span>
+                        <input
+                          type="text"
+                          placeholder="En Çok"
+                          className="w-full p-1 px-1 pl-2 border border-gray-300 rounded-full text-xs focus:outline-none focus:border-gray-300"
+                        />
+                      </div>
+                      <div className="ml-auto bg-gray-200 rounded-sm flex">
+                        <GrSearch className="text-white text-2xl p-1" />
+                      </div>
+                    </div>
+
+
                   )}
                   <ul className="pl-4 text-sm text-gray-600 max-h-32 overflow-y-auto rounded-md bg-white scrollbar-custom">
                     {category.content.map((item, index) => (
