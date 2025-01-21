@@ -6,7 +6,8 @@ import { LuUserRound } from "react-icons/lu";
 import { GrFavorite } from "react-icons/gr";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { motion } from "framer-motion";
-
+import { RxHamburgerMenu } from "react-icons/rx";
+import Mobile from './Mobile';
 const Header = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   useEffect(() => {
@@ -22,7 +23,6 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <div>
       <motion.div
@@ -31,7 +31,7 @@ const Header = () => {
         transition={{ duration: 0.2 }}
         className="fixed top-0 left-0 w-full bg-light-gray z-50"
       >
-        <div className="flex justify-between items-center p-2 bg-light-gray border-none mt-0 bg-white z-10 mx-auto w-full">
+        <div className="flex justify-between items-center p-2 bg-light-gray border-none mt-0 bg-white z-10 mx-auto w-full ">
           <div className="flex items-center space-x-4">
             <a href="#" className=" ml-[7.5vw] py-2 text-5xl font-semibold mr-[8%] text-dark-gray">
               trendyol
@@ -45,10 +45,9 @@ const Header = () => {
             />
             <CgSearch size={23} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-orange" />
           </div>
-
           <div className="flex items-start space-x-6 font-bold text-dark-black text-xs mr-[10%]">
             <a href="#" className="flex items-center space-x-1 group cursor-pointer">
-              <LuUserRound size={18} className="group-hover:text-orange duration-500 group-hover:fill-current" />
+              <LuUserRound size={18} className=" group-hover:text-orange duration-500 group-hover:fill-current" />
               <p className="group-hover:text-orange">Giriş Yap</p>
             </a>
             <a href="#" className="flex items-center space-x-1 group cursor-pointer">
@@ -62,23 +61,23 @@ const Header = () => {
           </div>
         </div>
       </motion.div>
-
-      {/* Diğer Bağlantılar */}
-      <div className="flex whitespace-nowrap justify-end items-center text-xs text-gray-400 mx-auto max-w-screen-xl">
+      <div className="lg:flex md:hidden sm:hidden hidden whitespace-nowrap justify-end items-center text-xs text-gray-400 mx-auto max-w-screen-xl">
         <div className="flex space-x-6">
-          <Link href="#" className="hover:text-placeholder-text-gray duration-100">İndirim Kuponlarım</Link>
-          <Link href="#" className="hover:text-placeholder-text-gray duration-100">Trendyol'da Satış Yap</Link>
-          <Link href="#" className="hover:text-placeholder-text-gray duration-100">Hakkımızda</Link>
-          <Link href="#" className="hover:text-placeholder-text-gray duration-100">Yardım & Destek</Link>
+          <Link href="#" className="hover:text-gray-600 duration-200">İndirim Kuponlarım</Link>
+          <Link href="#" className="hover:text-gray-600 duration-200">Trendyol'da Satış Yap</Link>
+          <Link href="#" className="hover:text-gray-600 duration-200">Hakkımızda</Link>
+          <Link href="#" className="hover:text-gray-600 duration-200">Yardım & Destek</Link>
         </div>
       </div>
-
-      {/* Ana Logo ve Arama Çubuğu */}
-      <div className="relative flex items-center justify-center mx-auto max-w-screen-xl space-x-16 cursor-pointer">
-        <div className="text-5xl font-semibold mr-[8%] text-dark-gray py-2">
+      <div className="relative flex items-center lg:justify-center md:justify-between sm:justify-between justify-between mx-auto max-w-screen-xl space-x-16 cursor-pointer lg:border-none border-t-2 border-b-2 px-2">
+        <div className="lg:text-5xl flex flex-row md:text-4xl text-3xl font-semibold mr-[8%] text-dark-gray py-2">
+          <div className='flex flex-col lg:hidden block'>
+            <RxHamburgerMenu className='' />
+            <p className='text-xs mt-0 font-bold'>menü</p>
+          </div>
           <Link href="/">trendyol</Link>
         </div>
-        <div className="relative flex items-center w-[45%]">
+        <div className=" relative flex items-center w-[45%] lg:block  hidden">
           <input
             type="text"
             placeholder="Aradığınız ürün, kategori veya markayı yazınız"
@@ -86,23 +85,24 @@ const Header = () => {
           />
           <CgSearch size={23} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-orange" />
         </div>
-        <div className="flex space-x-4 text-dark-gray text-xs font-bold">
+        <div className="flex lg:space-x-4 space-x-8 lg:text-dark-gray text-black text-xs font-bold ">
           <Link href="#" className="flex items-center space-x-2 group cursor-pointer">
-            <LuUserRound className='group-hover:text-orange duration-500 group-hover:fill-current text-lg' />
-            <span className='group-hover:text-orange'>Giriş Yap</span>
+            <LuUserRound className='lg:block hidden group-hover:text-orange duration-500 group-hover:fill-current lg:text-lg text-3xl' />
+            <CgSearch className='lg:hidden  block group-hover:text-orange duration-500 group-hover:fill-current lg:text-lg md:text-4xl text-2xl' />
+            <span className='group-hover:text-orange lg:block hidden'>Giriş Yap</span>
           </Link>
           <Link href="#" className="flex items-center space-x-2 group cursor-pointer">
-            <GrFavorite className='group-hover:text-orange duration-500 group-hover:fill-current text-lg' />
-            <span className='group-hover:text-orange'>Favorilerim</span>
+            <GrFavorite className='group-hover:text-orange duration-500 group-hover:fill-current lg:text-lg  md:text-4xl text-2xl' />
+            <span className='group-hover:text-orange lg:block hidden'>Favorilerim</span>
           </Link>
           <Link href="#" className="flex items-center space-x-2 group cursor-pointer">
-            <HiOutlineShoppingCart className='group-hover:text-orange duration-500 group-hover:fill-current text-lg' />
-            <span className='group-hover:text-orange'>Sepetim</span>
+            <HiOutlineShoppingCart className='group-hover:text-orange duration-500 group-hover:fill-current lg:text-lg md:text-4xl text-2xl' />
+            <span className='group-hover:text-orange lg:block hidden'>Sepetim</span>
           </Link>
         </div>
       </div>
+      <Mobile className='lg:hidden block'/>
     </div>
-
   );
 };
 

@@ -1,6 +1,6 @@
 const categoriesSupermarket=[
     {
-      name: "SüperMarket",
+      name: "Süpermarket",
       icon: "/icons/Supermarket.svg",
       subCategories: [
         {

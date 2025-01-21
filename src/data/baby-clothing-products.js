@@ -31,7 +31,7 @@ const products = [
         favoritesCount: '456 kişi',
         reviewsCount:'5233 kişi',
         starCount: '4.5',
-        coupon: 'Kupon Fırsatı'
+        coupon: '28 TL Kupon'
     },
     {
         id: 4,
@@ -52,7 +52,7 @@ const products = [
         favoritesCount: '231 kişi',
         reviewsCount:'5233 kişi',
         starCount: '4.5',
-        coupon: 'Kupon Fırsatı'
+        coupon: ' 30 TL Kupon'
     },
 
     {
@@ -63,7 +63,6 @@ const products = [
         brand: 'U.S. Polo Assn.',
         favoritesCount: '689 kişi',
         coupon: 'Kupon Fırsatı',
-         buyMore:'Çok Al Az Öde',
         
     },
     {

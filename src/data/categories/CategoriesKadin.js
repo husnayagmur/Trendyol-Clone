@@ -12,12 +12,20 @@ const categoriesKadin = [
         items: ["Topuklu Ayakkabı", "Sneaker", "Günlük Ayakkabı", "Babet", "Sandalet", "Bot", "Çizme", "Kar Botu", "Loafer"]
       },
       {
+        group: "Aksesuar & Çanta",
+        items: ["Çanta", "Saat", "Takı", "Cüzdan", "Atkı", "Bere", "Eldiven", "Kemer", "Şal"]
+      },
+      {
         group: "Çanta",
         items: ["Omuz Çantası", "Sırt Çantası", "Bel Çantası", "Okul Çantası", "Laptop Çantası", "Portföy", "Postacı Çantası", "El Çantası", "Kanvas Çanta", "Makyaj Çantası", "Abiye Çanta", "Çapraz Çanta", "Bez Çanta", "Anne Bebek Çantası", "Evrak Çantası", "Tote Çanta", "Beslenme Çantası", "Kartlık", "Cüzdan", "Kadın Spor Çantası"]
       },
       {
         group: "İç Giyim",
         items: ["Pijama Takımı", "Gecelik", "Sütyen", "İç Çamaşırı Takımları", "Fantezi Giyim", "Çorap", "Korse", "Külot", "Büstiyer", "Bralet", "Atlet & Body", "Kombinezon", "Jartiyer"]
+      },
+      {
+        group: "Lüks",
+        items: ["Lüks Çanta", "Lüks Giyim", "Lüks Ayakkabı"]
       },
       {
         group: "Kozmetik",
@@ -28,17 +36,7 @@ const categoriesKadin = [
         items: ["Sweatshirt", "Tişört", "Spor Sütyeni", "Tayt", "Eşofman", "Koşu Ayakkabısı", "Spor Çantası", "Spor Ekipmanları", "Outdoor Ayakkabı", "Kar Botu", "Outdoor Ekipmanları", "Sporcu Besinleri", "Sporcu Aksesuarları", "Outdoor Çanta", "Kayak Malzemeleri", "Uyku Tulumu", "Mat", "Dağcılık", "Kadın Spor Ceket", "Spor Ayakkabı"
 
         ]
-      },
-      {
-        group: "Aksesuar & Çanta",
-        items: ["Çanta", "Saat", "Takı", "Cüzdan", "Atkı", "Bere", "Eldiven", "Kemer", "Şal"]
-      },
-      
-      {
-        group: "Lüks",
-        items: ["Lüks Çanta", "Lüks Giyim", "Lüks Ayakkabı"]
-      },
-      
+      },    
     ]
   }
 ]

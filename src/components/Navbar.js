@@ -2,7 +2,6 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { RxHamburgerMenu } from "react-icons/rx";
 import CategoryDropdown from './CategoryDropdown';
-
 const Navbar = () => {
   const navbarItems = [
     { name: 'Kadın' },
@@ -16,24 +15,21 @@ const Navbar = () => {
     { name: 'Çok Satanlar', icon: '/icons/cokSatanlar.svg' },
     { name: 'Flaş Ürünler', icon: '/icons/flas.svg' },
   ];
-
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(null);
-
   const handleItemClick = (name) => {
     setActiveItem(name);
   };
-
   return (
     <div className="relative">
-      <div className="flex items-center px-4 py-2 mx-auto max-w-screen-xl space-x-32 cursor-pointer">
+      <div className="lg:flex hidden items-center px-4 py-2 mx-auto max-w-screen-xl space-x-48 cursor-pointer">
         <div
           className="flex items-center space-x-2 whitespace-nowrap"
-          onMouseEnter={() => setDropdownOpen(true)} // Hamburger menüsüne gelindiğinde açılır
+          onMouseEnter={() => setDropdownOpen(true)}
           onMouseLeave={() => setDropdownOpen(false)}
         >
-          <RxHamburgerMenu className="text-2xl" />
-          <h3 className="font-semibold text-dark-gray text-xs font-montserrat">TÜM KATEGORİLER</h3>
+          <RxHamburgerMenu className="lg:block hidden text-2xl" />
+          <h3 className="font-semibold text-dark-gray text-xs font-montserrat lg:block sm:hidden md:hidden hidden">TÜM KATEGORİLER</h3>
         </div>
         <div className="mx-auto w-full flex justify-between text-nowrap items-center">
           <ul className="flex space-x-6 font-semibold text-dark-gray text-[13px] font-montserrat cursor-pointer mb-1">

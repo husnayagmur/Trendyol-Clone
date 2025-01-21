@@ -9,20 +9,19 @@ const Products = () => {
   const [showReviews, setShowReviews] = useState(false);
   useEffect(() => {
     const interval = setInterval(() => {
-      setShowReviews((prev) => !prev); 
-    }, 1000); 
+      setShowReviews((prev) => !prev);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
-
   return (
-    <div className="grid grid-cols-4 gap-4 p-4 h-auto">
+    <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 p-4 h-auto">
       {products.map((product) => (
         <div key={product.id} className="flex justify-center">
-          <div className="relative w-full max-w-[240px] h-[450px] border border-gray-200 rounded-md flex flex-col items-center justify-start">
+          <div className="relative w-[500px] lg:w-full lg:max-w-[240px] lg:h-[450px] md:h-[490px] border border-gray-200 rounded-md flex flex-col items-center justify-start">
             <img
               src={product.image}
               alt={product.name}
-              className="object-cover w-full h-[230px]"
+              className="object-cover w-full lg:h-[230px] md:h-[290px]"
             />
             <div className="absolute top-2 right-2 border rounded-full w-11 h-11 flex justify-center items-center bg-white shadow-lg hover:text-orange-500">
               <GoHeart size={21} className="text-dark-gray hover:text-orange" />
@@ -31,12 +30,12 @@ const Products = () => {
               <span className="text-sm text-start text-gray-600">
                 <span className="font-bold text-mediumDark-gray">{product.brand}</span> {product.name}
               </span>
-              {(product.id === 1 || product.id === 3||product.id===5 ) ? (
+              {(product.id === 1 || product.id === 3 || product.id === 5) ? (
                 <motion.div
                   className="flex items-center justify-start w-full mb-2 mt-2"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: showReviews ? 0 : 1 }} 
-                  exit={{ opacity: 0 }} 
+                  animate={{ opacity: showReviews ? 0 : 1 }}
+                  exit={{ opacity: 0 }}
                   transition={{
                     opacity: { duration: 0.8 },
                   }}
@@ -77,7 +76,6 @@ const Products = () => {
                 </motion.div>
               ) : (
                 <div className="flex items-center justify-start w-full mb-2 mt-2">
-                  {/* Favori sayısı */}
                   <img
                     src="/images/fav-kalp.jpg"
                     alt="Favori Kalp"
@@ -129,6 +127,32 @@ const Products = () => {
                 </div>
               )}
               <span className="text-md font-semibold text-orange mt-2">{product.price}TL</span>
+              {product.coupon && (
+                <div className="flex flex-row space-x-1 absolute bottom-2">
+                  {product.coupon && (
+                    <div className="bg-pink-50 rounded-md flex flex-row items-center space-x-1 p-0.5">
+                      <img
+                        src="/icons/coupon-icon.svg"
+                        alt="coupon"
+                        className="w-6 h-6"
+                      />
+                      <span className="text-[12px] text-dark-gray">{product.coupon}</span>
+                    </div>
+                  )}
+
+                  {product.buyMore && (
+                    <div className="bg-lihgt-orange rounded-md  flex flex-row items-center space-x-1 p-0.5">
+                      <img
+                        src="/icons/product-promotion-icon.svg"
+                        alt="promotion"
+                        className="w-6 h-6"
+                      />
+                      <span className="text-[12px] text-dark-gray">{product.buyMore}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+
             </div>
           </div>
         </div>

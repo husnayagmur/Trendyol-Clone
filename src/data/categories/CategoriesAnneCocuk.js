@@ -96,6 +96,17 @@ const categoriesAdam=[
              ]
            },
            {
+            group: "Oyuncak",
+            items: [
+              "Eğitici Oyuncaklar",
+              "Oyuncak Araba",
+              "Oyuncak Bebek",
+              "Bebek & Okul Öncesi",
+              "Kumandalı Oyuncak",
+              "Robot Oyuncak"
+            ]
+          },
+           {
             group: "Beslenme Emzirme",
             items: [
               "Biberon & Emzik",
@@ -134,17 +145,6 @@ const categoriesAdam=[
               "Bebek Salıncakları"
             ]
           },
-           {
-             group: "Oyuncak",
-             items: [
-               "Eğitici Oyuncaklar",
-               "Oyuncak Araba",
-               "Oyuncak Bebek",
-               "Bebek & Okul Öncesi",
-               "Kumandalı Oyuncak",
-               "Robot Oyuncak"
-             ]
-           },
            {
              group: "Bebek Odası",
              items: [

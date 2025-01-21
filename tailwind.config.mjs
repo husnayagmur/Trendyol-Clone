@@ -18,6 +18,7 @@ export default {
         'medium-grey': '#B0B0B0',
         'mediumDark-gray': '#404040',
         'dropdownBg': "#F3F3F3",
+        'lihgt-orange':'#fff7f0'
       },
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],

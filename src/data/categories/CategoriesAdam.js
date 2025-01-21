@@ -47,6 +47,16 @@ const categoriesAdam=[
           ]
         },
         {
+          "group": "Kişisel Bakım",
+          "items": [
+            "Parfüm",
+            "Cinsel Sağlık",
+            "Tıraş Sonrası Ürünler",
+            "Tıraş Bıçağı",
+            "Deodorant"
+          ]
+        },
+        {
           "group": "Çanta",
           "items": [
             "Sırt Çantası",
@@ -58,6 +68,20 @@ const categoriesAdam=[
             "Bez Çanta",
             "Evrak Çantası",
             "Cüzdan"
+          ]
+        },
+        {
+          "group": "Büyük Beden",
+          "items": [
+            "Büyük Beden Sweatshirt",
+            "Büyük Beden T-shirt",
+            "Büyük Beden Gömlek",
+            "Büyük Beden Pantolon",
+            "Büyük Beden Mont",
+            "Büyük Beden Kazak",
+            "Büyük Beden Hırka",
+            "Büyük Beden Kaban",
+            "Büyük Beden Eşofman Altı..."
           ]
         },{
           "group": "Saat & Aksesuar",
@@ -75,6 +99,16 @@ const categoriesAdam=[
             "Atkı",
             "Bere",
             "Eldiven"
+          ]
+        },
+        {
+          "group": "İç Giyim",
+          "items": [
+            "Boxer",
+            "Çorap",
+            "Pijama",
+            "Atlet",
+            "İçlik"
           ]
         },
         {
@@ -120,41 +154,6 @@ const categoriesAdam=[
             "Oyuncu Koltuğu",
             "Xbox Series X",
             "Drone"
-          ]
-        },
-        {
-          "group": "Kişisel Bakım",
-          "items": [
-            "Parfüm",
-            "Cinsel Sağlık",
-            "Tıraş Sonrası Ürünler",
-            "Tıraş Bıçağı",
-            "Deodorant"
-          ]
-        },
-        {
-          "group": "Büyük Beden",
-          "items": [
-            "Büyük Beden Sweatshirt",
-            "Büyük Beden T-shirt",
-            "Büyük Beden Gömlek",
-            "Büyük Beden Pantolon",
-            "Büyük Beden Mont",
-            "Büyük Beden Kazak",
-            "Büyük Beden Hırka",
-            "Büyük Beden Kaban",
-            "Büyük Beden Eşofman Altı..."
-          ]
-        },
-        
-        {
-          "group": "İç Giyim",
-          "items": [
-            "Boxer",
-            "Çorap",
-            "Pijama",
-            "Atlet",
-            "İçlik"
           ]
         },
         {
