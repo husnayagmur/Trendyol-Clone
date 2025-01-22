@@ -33,7 +33,7 @@ const FilterScroll = () => {
                   {category.id > 26 && category.id !== 28 ? (
                     <input
                       type="checkbox"
-                      className="mr-2 w-4 h-4 rounded border-gray-300"
+                      className="mr-2 w-4 h-4 rounded border-gray-300 accent-orange "
                     />
                   ) : null}
                   {category.title}
@@ -94,7 +94,7 @@ const FilterScroll = () => {
                         {category.id !== 1 && (
                           <input
                             type="checkbox"
-                            className="mr-2 w-4 h-4 rounded-full border-gray-300"
+                            className="mr-2 w-4 h-4 rounded-full border-gray-300 accent-orange "
                           />
                         )}
                         <span

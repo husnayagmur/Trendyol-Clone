@@ -4,14 +4,34 @@ import Link from 'next/link';
 import { CgSearch } from "react-icons/cg";
 import { LuUserRound } from "react-icons/lu";
 import { GrFavorite } from "react-icons/gr";
-import { HiOutlineShoppingCart } from "react-icons/hi2";
+import { HiOutlineShoppingCart, HiQuestionMarkCircle } from "react-icons/hi2";
 import { motion } from "framer-motion";
 import { RxHamburgerMenu } from "react-icons/rx";
 import HeaderNav from './HeaderNav';
 import { allCategories } from '../components/CategoryDropdown';
 import { FaChevronRight } from "react-icons/fa6";
+import { FiX } from "react-icons/fi";
+import { IoPerson } from "react-icons/io5";
+import { AiOutlineGlobal } from "react-icons/ai";
+import { HiOutlineArrowLeft } from "react-icons/hi";
 const Header = () => {
   const [showNavbar, setShowNavbar] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(0); // Aktif kategori
+  const [showFullScreenContent, setShowFullScreenContent] = useState(false);
+  const handleCategoryClick = (index) => {
+    console.log(allCategories[index]);
+    setActiveCategory(index);
+    setShowFullScreenContent(true);
+  };
+  const closeGroup = () => {
+    setShowFullScreenContent(false);
+    setIsMenuOpen(false);
+  };
+  const BackGroup = () => {
+    setShowFullScreenContent(false);
+  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -25,8 +45,6 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   return (
     <div>
       <motion.div
@@ -83,12 +101,30 @@ const Header = () => {
             />
             <p className="text-xs mt-0 font-bold">menü</p>
             <ul
-              className={`fixed top-0 left-0 w-64 z-10 h-full bg-white shadow-lg transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+              className={`fixed top-0 left-0 w-4/5 z-10 h-full bg-white shadow-lg transform transition-transform duration-300 hide-scrollbar ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
             >
+              <div className="w-full border px-4 py-4 bg-medium-dark-gray flex items-center justify-between">
+                <li className="text-2xl">trendyol</li>
+                <button onClick={toggleMenu} className="text-xl text-medium-grey">
+                  <FiX />
+                </button>
+              </div>
+              <div className="w-full border px-4 py-3 bg-gradient-to-r from-orange to-pink-600 text-white">
+                <li className="text-sm flex items-center space-x-2">
+                  <img
+                    src="/icons/doublelightning.svg"
+                    alt="İkon"
+                    className="w-7 h-7 mr-1 mt-2"
+                  />
+                  Flaş Ürünler
+                </li>
+                <p className="text-xs ml-7">Hemen al, fırsatı kaçırma!</p>
+              </div>
               {allCategories.map((category, index) => (
                 <li
                   key={index}
                   className="flex items-center justify-between px-4 py-4 cursor-pointer border-b"
+                  onClick={() => handleCategoryClick(index)}
                 >
                   <div className="flex items-center space-x-3">
                     <img
@@ -97,13 +133,52 @@ const Header = () => {
                       className="w-6 h-6"
                     />
                     <span className="text-mediumDark-gray text-sm font-semibold">
-                      {category.name}
+                      {category.name.toUpperCase()}
                     </span>
                   </div>
                   <FaChevronRight className="text-medium-grey text-sm" />
                 </li>
               ))}
+              <div className="w-full border-t-8 border-b-8 border-medium-dark-gray">
+                <div className="w-full border px-4 py-4 flex items-center space-x-2">
+                  <IoPerson className="text-medium-grey text-xl" />
+                  <li className="text-sm font-semibold">Üye Ol/Giriş Yap</li>
+                </div>
+                <div className="w-full border px-4 py-4 flex items-center space-x-2">
+                  <HiQuestionMarkCircle className="text-medium-grey text-xl" />
+                  <li className="text-sm font-semibold">Yardım</li>
+                </div>
+                <div className="w-full border px-4 py-4 flex items-center space-x-2">
+                  <AiOutlineGlobal className="text-medium-grey text-xl" />
+                  <li className="text-sm font-semibold">Ülke Değiştir</li>
+                </div>
+              </div>
+              <li className="text-sm w-full border px-4 py-4 underline">Çerez Tercihlerim</li>
             </ul>
+            {showFullScreenContent && (
+              <div className="fixed top-0 left-0 w-4/5 h-full bg-white z-20 shadow-lg ">
+                <div className="flex justify-between items-center border-b pb-4 w-full bg-black bg-opacity-50 px-4 py-4">
+                  <HiOutlineArrowLeft onClick={BackGroup} className="text-white text-md text-3xl" />
+                  <img src="/icons/trendyol-logo.svg" alt="Trendyol Icon" className="w-18 h-18" />
+                  <FiX onClick={closeGroup} className='text-white text-3xl' />
+                </div>
+                <div className="w-auto">
+                  {allCategories[activeCategory]?.subCategories?.length > 0 && (
+                    <ul>
+                      {allCategories[activeCategory].subCategories.map((subCategory, idx) => (
+                        <li
+                          key={idx}
+                          className="w-auto py-3 px-2 text-[15px] font-normal text-dark-gray border-b border-solid border-gray-300 flex justify-between items-center ml-2"
+                        >
+                          <span className="text-center">{subCategory.group}</span>
+                          <FaChevronRight className="text-medium-grey text-sm" />
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
           <Link href="/">trendyol</Link>
         </div>

@@ -8,13 +8,13 @@ import { FaChevronRight } from "react-icons/fa6";
 import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi2";
 import { CgSearch } from "react-icons/cg";
 import { options } from '../components/SearchResultsInfo';
-
+import { HiOutlineArrowLeft } from "react-icons/hi";
 const Mobile = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Önerilen");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
-
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const allowedIds = [4, 3, 5, 2, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 28];
   const navallowedIds = [3, 2, 6, 7, 9, 10, 32, 4];
 
@@ -35,7 +35,6 @@ const Mobile = () => {
           Bebek Takımı
         </p>
       </div>
-
       <div className="bg-white lg:hidden block">
         <div className="flex items-center justify-between w-full">
           <BsChevronLeft className="text-3xl" />
@@ -45,7 +44,6 @@ const Mobile = () => {
           </div>
         </div>
       </div>
-
       <div className="flex lg:hidden mb-1">
         <div
           className="border py-1 w-1/2 flex items-center justify-center cursor-pointer"
@@ -63,62 +61,102 @@ const Mobile = () => {
           <p className="text-orange px-1 font-semibold">(1)</p>
         </div>
       </div>
-
       {isFilterOpen && (
         <>
           <div
             className="fixed inset-0 bg-black bg-opacity-50 z-40"
-            onClick={() => setIsFilterOpen(false)}
+            onClick={() => {
+              setIsFilterOpen(false);
+              setSelectedCategory(null);
+            }}
           ></div>
-          <div
-            className="fixed top-0 left-0 w-full h-full bg-white z-50 p-4 hide-scrollbar"
-            style={{ maxHeight: "100vh" }}
-          >
-            <div className="flex items-center py-2 border-b">
-              <FiX
-                className="text-2xl cursor-pointer text-dark-gray"
-                onClick={() => setIsFilterOpen(false)}
-              />
-              <h3 className="text-lg flex-grow text-center ">FİLTRELE</h3>
-            </div>
-            <div className="w-screen -ml-3 border-b border-t bg-gray-100 py-3"></div>
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold">Seçili Filtreler</h4>
-              <p className="rounded-full text-sm font-thin bg-gray-50 border border-medium-grey text-medium-grey px-2 py-1 w-[90px] whitespace-nowrap">
-                Bebek Takımı
-              </p>
-              <div className="w-screen -ml-3 border-b bg-gray-100 py-3"></div>
-              <ul className="relative">
-                {categories
-                  .filter((category) => allowedIds.includes(category.id))
-                  .map((category) => (
-                    <li
-                      key={category.id}
-                      className="py-4 cursor-pointer border-b flex flex-row justify-between"
-                      onClick={() => handleCategoryClick(category.id)}
-                    >
-                      {category.title}
-                      <FaChevronRight className="text-orange" />
-                    </li>
-                  ))}
-              </ul>
-              <div className="fixed bottom-0 left-0 bg-white w-full py-3 shadow-md">
-                <button className="bg-orange text-white w-full py-3 text-center rounded-md">
-                  Tüm Sonuçları Listele (1565)
-                </button>
+          {!selectedCategory ? (
+            <div
+              className="fixed top-0 left-0 w-full h-full bg-white z-50 p-4 hide-scrollbar"
+              style={{ maxHeight: "100vh" }}
+            >
+              <div className="flex items-center py-2 border-b">
+                <FiX
+                  className="text-2xl cursor-pointer text-dark-gray"
+                  onClick={() => setIsFilterOpen(false)}
+                />
+                <h3 className="text-lg flex-grow text-center ">FİLTRELE</h3>
+              </div>
+              <div className="w-screen -ml-3 border-b border-t bg-gray-100 py-3"></div>
+              <div className="space-y-4">
+                <h4 className="text-sm font-semibold">Seçili Filtreler</h4>
+                <p className="rounded-full text-sm font-thin bg-gray-50 border border-medium-grey text-medium-grey px-2 py-1 w-[90px] whitespace-nowrap">
+                  Bebek Takımı
+                </p>
+                <div className="w-screen -ml-3 border-b bg-gray-100 py-3"></div>
+                <ul className="relative">
+                  {categories
+                    .filter((category) => allowedIds.includes(category.id))
+                    .map((category) => (
+                      <li
+                        key={category.id}
+                        className="py-4 cursor-pointer border-b flex flex-row justify-between"
+                        onClick={() => setSelectedCategory(category)}
+                      >
+                        {category.title}
+                        <FaChevronRight className="text-orange" />
+                      </li>
+                    ))}
+                </ul>
+                <div className="fixed bottom-0 left-0 bg-white w-full py-3 shadow-md">
+                  <button className="bg-orange text-white w-full py-3 text-center rounded-md">
+                    Tüm Sonuçları Listele (1565)
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div
+              className="fixed top-0 left-0 w-full h-full bg-white z-50 hide-scrollbar"
+              style={{ maxHeight: "100vh" }}
+            >
+              <div className="flex items-center py-4 border-b px-3">
+                <HiOutlineArrowLeft
+                  className="text-2xl cursor-pointer text-dark-gray"
+                  onClick={() => setSelectedCategory(null)}
+                />
+                <h3 className="text-lg flex-grow text-center">{selectedCategory.title}</h3>
+                <button className="text-xs text-medium-grey">TEMİZLE</button>
+              </div>
+              <div className="w-full flex items-center space-x-2 border-b-8 border-medium-dark-gray px-3 py-2">
+                <CgSearch className="text-black text-2xl" />
+                <input
+                  type="text"
+                  placeholder="Aradığın içeriği bul"
+                  className="w-full px-3 py-2 text-[15px] text-dark-gray placeholder-medium-grey focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent"
+                />
+              </div>
+              <div className="space-y-3 px-5">
+                <ul className="relative">
+                  {selectedCategory.content?.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="py-4 cursor-pointer border-b flex flex-row justify-between items-center">
+                      <input
+                        type="checkbox"
+                        className="mr-4 w-5 h-5 accent-orange cursor-pointer border-medium-grey" />
+                      <div className="flex flex-row justify-between w-full space-x-4">
+                        <span className="text-dark-gray">{item}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
         </>
       )}
-
       {isDropdownOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={() => setIsDropdownOpen(false)}
         ></div>
       )}
-
       {isDropdownOpen && (
         <div
           className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-300 z-50"
@@ -152,7 +190,6 @@ const Mobile = () => {
           </ul>
         </div>
       )}
-
       <ul className="relative flex flex-row lg:hidden whitespace-nowrap overflow-x-auto">
         {categories
           .filter((category) => navallowedIds.includes(category.id))
@@ -171,7 +208,6 @@ const Mobile = () => {
             </li>
           ))}
       </ul>
-
       {activeCategory && (
         <div className="relative">
           <div className="p-4 mt-4 z-20 relative">
@@ -191,7 +227,7 @@ const Mobile = () => {
                     <input
                       type="checkbox"
                       id={`checkbox-${index}`}
-                      className="mr-2 w-5 h-5 border-2 border-gray-300 rounded-sm"
+                      className="mr-2 w-5 h-5 border-2 border-gray-300 rounded-sm accent-orange "
                     />
                     <label htmlFor={`checkbox-${index}`} className="text-sm">
                       {item}
