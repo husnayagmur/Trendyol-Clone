@@ -33,7 +33,7 @@ const SearchResultsInfo = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="w-[80%] min-h-screen overflow-y-hidden">
+    <div className="lg:w-4/5 w-full min-h-screen overflow-y-hidden">
       <div className='w-full lg:flex justify-center mt-[4%] hidden'>
         <div>
           <span className='flex text-dark-gray font-medium text-lg'>

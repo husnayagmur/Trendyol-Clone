@@ -21,9 +21,9 @@ const CategoryDropdown = () => {
     setHoveredCategory(categories1[0]);
   }, []);
   return (
-    <div className="relative flex justify-center -top-0.5 w-full h-screen">
-      <div className="absolute inset-0 bg-gray-500 opacity-30 z-0"></div>
-      <div className="bg-dropdownBg z-10 w-[15%] h-[calc(79vh)] rounded-b-md ">
+    <div className="relative flex justify-center -top-0.5 w-full h-2/3">
+      <div className="absolute w-screen h-screen bg-gray-500 opacity-30 z-0"></div>
+      <div className="bg-dropdownBg z-10 w-1/5 h-4/5 rounded-b-md ">
         <ul className="flex flex-col">
           {allCategories.map((category, index) => (
             <li
@@ -52,10 +52,11 @@ const CategoryDropdown = () => {
               />
             </li>
           ))}
+          <li className='px-4 py-6'></li>
         </ul>
       </div>
       {hoveredCategory && (
-        <div className="bg-white border-b border-r border-l border-gray-200 grid grid-cols-6 rounded-b-md w-[70vw] h-[calc(79vh)] gap-x-12 py-1 relative z-10">
+        <div className="bg-white border-b border-r border-l border-gray-200 grid grid-cols-6 rounded-b-md w-5/6 h-4/5 gap-x-12 py-1 relative z-10">
           {hoveredCategory.name === "Ev & Mobilya" || hoveredCategory.name === "Elektronik" || hoveredCategory.name === "Spor & Outdoor" ? (
             <div className="flex flex-col space-y-1">
               <div className="mb-2">

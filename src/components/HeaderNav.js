@@ -128,7 +128,7 @@ const Mobile = () => {
                 <input
                   type="text"
                   placeholder="Aradığın içeriği bul"
-                  className="w-full px-3 py-2 text-[15px] text-dark-gray placeholder-medium-grey focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent"
+                  className="w-full px-3 py-2 text-[15px] text-dark-gray placeholder-medium-grey focus:outline-none"
                 />
               </div>
               <div className="space-y-3 px-5">
@@ -146,6 +146,11 @@ const Mobile = () => {
                     </li>
                   ))}
                 </ul>
+                <div className="fixed -bottom-1 left-0 bg-white w-full py-3 shadow-md">
+                  <button  onClick={() => setSelectedCategory(null)} className="bg-orange text-white w-full py-3 text-center rounded-md">
+                    Geri Dön
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -160,7 +165,6 @@ const Mobile = () => {
       {isDropdownOpen && (
         <div
           className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-300 z-50"
-          style={{ maxHeight: "50vh", overflowY: "auto" }}
         >
           <div className="flex items-center justify-between px-4 py-2 border-b">
             <h3 className="text-lg font-semibold">Sıralama</h3>
@@ -253,5 +257,4 @@ const Mobile = () => {
     </div>
   );
 };
-
 export default Mobile;

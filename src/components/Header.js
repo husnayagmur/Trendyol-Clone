@@ -17,19 +17,30 @@ import { HiOutlineArrowLeft } from "react-icons/hi";
 const Header = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(0); // Aktif kategori
-  const [showFullScreenContent, setShowFullScreenContent] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [showGroup, setShowGroup] = useState(false);
+  const [selectedGroup, setSelectedGroup] = useState(null);
+  const [showSubGroup, setShowSubGroup] = useState(false);
+  const handleGroupClick = (group) => {
+    setSelectedGroup(group);
+    setShowSubGroup(true);
+  };
+  const closeSubGroup = () => {
+    setShowSubGroup(false);
+    setShowGroup(false);
+    setIsMenuOpen(false);
+  };
   const handleCategoryClick = (index) => {
     console.log(allCategories[index]);
     setActiveCategory(index);
-    setShowFullScreenContent(true);
+    setShowGroup(true);
   };
   const closeGroup = () => {
-    setShowFullScreenContent(false);
+    setShowGroup(false);
     setIsMenuOpen(false);
   };
   const BackGroup = () => {
-    setShowFullScreenContent(false);
+    setShowGroup(false);
   };
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   useEffect(() => {
@@ -109,16 +120,21 @@ const Header = () => {
                   <FiX />
                 </button>
               </div>
-              <div className="w-full border px-4 py-3 bg-gradient-to-r from-orange to-pink-600 text-white">
-                <li className="text-sm flex items-center space-x-2">
-                  <img
-                    src="/icons/doublelightning.svg"
-                    alt="İkon"
-                    className="w-7 h-7 mr-1 mt-2"
-                  />
-                  Flaş Ürünler
-                </li>
-                <p className="text-xs ml-7">Hemen al, fırsatı kaçırma!</p>
+              <div className="w-full border px-4 py-3 bg-gradient-to-r from-orange to-pink-600 text-white flex items-start justify-between">
+                <div className="flex flex-col">
+                  <li className="text-sm flex items-center space-x-2">
+                    <img
+                      src="/icons/doublelightning.svg"
+                      alt="İkon"
+                      className="w-7 h-7 mr-1 mt-2"
+                    />
+                    Flaş Ürünler
+                  </li>
+                  <p className="text-xs ml-7">Hemen al, fırsatı kaçırma!</p>
+                </div>
+                <div className="bg-white w-4 h-4 flex items-center justify-center rounded-full self-center">
+                  <FaChevronRight className='text-medium-grey text-xs' />
+                </div>
               </div>
               {allCategories.map((category, index) => (
                 <li
@@ -155,30 +171,49 @@ const Header = () => {
               </div>
               <li className="text-sm w-full border px-4 py-4 underline">Çerez Tercihlerim</li>
             </ul>
-            {showFullScreenContent && (
-              <div className="fixed top-0 left-0 w-4/5 h-full bg-white z-20 shadow-lg ">
-                <div className="flex justify-between items-center border-b pb-4 w-full bg-black bg-opacity-50 px-4 py-4">
-                  <HiOutlineArrowLeft onClick={BackGroup} className="text-white text-md text-3xl" />
-                  <img src="/icons/trendyol-logo.svg" alt="Trendyol Icon" className="w-18 h-18" />
-                  <FiX onClick={closeGroup} className='text-white text-3xl' />
-                </div>
-                <div className="w-auto">
-                  {allCategories[activeCategory]?.subCategories?.length > 0 && (
-                    <ul>
-                      {allCategories[activeCategory].subCategories.map((subCategory, idx) => (
-                        <li
-                          key={idx}
-                          className="w-auto py-3 px-2 text-[15px] font-normal text-dark-gray border-b border-solid border-gray-300 flex justify-between items-center ml-2"
-                        >
-                          <span className="text-center">{subCategory.group}</span>
-                          <FaChevronRight className="text-medium-grey text-sm" />
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </div>
+            {showGroup && (
+        <div className="fixed top-0 left-0 w-4/5 h-full bg-white z-20 shadow-lg">
+          <div className="flex justify-between items-center border-b pb-4 w-full bg-black bg-opacity-50 px-4 py-4">
+            <HiOutlineArrowLeft onClick={closeGroup} className="text-white text-md text-3xl" />
+            <img src="/icons/trendyol-logo.svg" alt="Trendyol Icon" className="w-18 h-18" />
+            <FiX onClick={closeGroup} className="text-white text-3xl" />
+          </div>
+          <div className="w-auto">
+            {allCategories[activeCategory]?.subCategories?.length > 0 && (
+              <ul>
+                {allCategories[activeCategory].subCategories.map((subCategory, idx) => (
+                  <li
+                    key={idx}
+                    onClick={() => handleGroupClick(subCategory)}
+                    className="w-auto py-3 px-2 text-[15px] font-normal text-dark-gray border-b border-solid border-gray-300 flex justify-between items-center ml-2 cursor-pointer"
+                  >
+                    <span className="text-center">{subCategory.group}</span>
+                    <FaChevronRight className="text-medium-grey text-sm" />
+                  </li>
+                ))}
+              </ul>
             )}
+          </div>
+        </div>
+      )}
+      {showSubGroup && (
+       <div className="fixed top-0 left-0 w-4/5 h-full bg-white z-20 shadow-lg">
+          <div className="flex justify-between items-center border-b pb-4 w-full bg-black bg-opacity-50 px-4 py-4">
+            <HiOutlineArrowLeft onClick={closeSubGroup} className="text-white text-md text-3xl" />
+            <img src="/icons/trendyol-logo.svg" alt="Trendyol Icon" className="w-18 h-18" />
+            <FiX onClick={closeSubGroup} className="text-white text-3xl" />
+          </div>
+          <div className="w-auto">
+            <ul>
+              {selectedGroup?.items.map((item, idx) => (
+                <li key={idx}className="w-auto py-3 px-2 text-[15px] font-normal text-dark-gray border-b border-solid border-gray-300 flex justify-between items-center ml-2 cursor-pointer">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
           </div>
           <Link href="/">trendyol</Link>
         </div>

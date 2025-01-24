@@ -22,7 +22,7 @@ const Navbar = () => {
   };
   return (
     <div className="relative">
-      <div className="lg:flex hidden items-center px-4 py-2 mx-auto max-w-screen-xl space-x-48 cursor-pointer">
+      <div className="lg:flex hidden items-center px-4 py-2 mx-auto space-x-48 cursor-pointer max-w-7xl">
         <div
           className="flex items-center space-x-2 whitespace-nowrap"
           onMouseEnter={() => setDropdownOpen(true)}
@@ -69,13 +69,11 @@ const Navbar = () => {
       </div>
       <hr className="border-t border-gray-300 w-full -mt-1 absolute left-0" />
       {isDropdownOpen && (
-        <div
-          className="absolute top-full left-0 w-full z-10"
-          onMouseEnter={() => setDropdownOpen(true)} 
-          onMouseLeave={() => setDropdownOpen(false)}
-        >
-          <CategoryDropdown />
-        </div>
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 justify-center w-full z-10 max-w-7xl"  onMouseEnter={() => setDropdownOpen(true)} 
+        onMouseLeave={() => setDropdownOpen(false)}>
+        <CategoryDropdown 
+        />
+      </div>      
       )}
     </div>
   );

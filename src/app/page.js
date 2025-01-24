@@ -2,7 +2,6 @@
 import FilterScroll from "@/components/FilterScroll";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
-import Products from "@/components/Products";
 import React, { useEffect } from 'react'
 
 const Page = () => {

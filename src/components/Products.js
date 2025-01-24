@@ -16,7 +16,7 @@ const Products = () => {
     <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 p-4 h-auto max-w-7xl">
       {products.map((product) => (
         <div key={product.id} className="flex justify-center">
-          <div className="relative lg:w-5/7 lg:h-6/7 border border-gray-200 rounded-md flex flex-col items-center justify-start">
+          <div className="relative lg:w-5/7 lg:h-6/7  border border-gray-200 rounded-md flex flex-col items-center justify-start">
             <img
               src={product.image}
               alt={product.name}
@@ -31,7 +31,7 @@ const Products = () => {
               </span>
               {(product.id === 1 || product.id === 3 || product.id === 5) ? (
                 <motion.div
-                  className="flex items-center justify-start w-full mb-2 mt-2"
+                  className="flex items-center justify-start w-full mb-2 mt-2 whitespace-nowrap"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: showReviews ? 0 : 1 }}
                   exit={{ opacity: 0 }}
@@ -74,7 +74,7 @@ const Products = () => {
                   )}
                 </motion.div>
               ) : (
-                <div className="flex items-center justify-start w-full mb-2 mt-2">
+                <div className="flex items-center justify-start w-full mb-2 mt-2 ">
                   <img
                     src="/images/fav-kalp.jpg"
                     alt="Favori Kalp"
@@ -125,32 +125,36 @@ const Products = () => {
                   ))}
                 </div>
               )}
-              <span className="text-md font-semibold text-orange mt-2">{product.price}TL</span>
-              {product.coupon && (
-                <div className="flex flex-row space-x-1 absolute bottom-2">
-                  {product.coupon && (
-                    <div className="bg-pink-50 rounded-md flex flex-row items-center space-x-1 p-0.5">
-                      <img
-                        src="/icons/coupon-icon.svg"
-                        alt="coupon"
-                        className="w-6 h-6"
-                      />
-                      <span className="text-[12px] text-dark-gray">{product.coupon}</span>
-                    </div>
-                  )}
-                  {product.buyMore && (
-                    <div className="bg-lihgt-orange rounded-md  flex flex-row items-center space-x-1 p-0.5">
-                      <img
-                        src="/icons/product-promotion-icon.svg"
-                        alt="promotion"
-                        className="w-6 h-6"
-                      />
-                      <span className="text-[12px] text-dark-gray">{product.buyMore}</span>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+             <div className="text-md font-semibold text-orange mt-2">{product.price}TL</div>
+             {product.coupon && (
+  <div className="flex flex-row space-x-1 lg:flex-nowrap flex-wrap">
+    {product.coupon && (
+      <div className="bg-pink-50 rounded-md flex lg:flex-row flex-col items-center lg:h-auto p-0.5">
+        <img
+          src="/icons/coupon-icon.svg"
+          alt="coupon"
+          className="w-6 h-6"
+        />
+        <span className="text-[12px] text-dark-gray  whitespace-nowrap">
+          {product.coupon}
+        </span>
+      </div>
+    )}
+    {product.buyMore && (
+      <div className="bg-lihgt-orange rounded-md flex lg:flex-row flex-col items-center lg:h-auto h-15 p-0.5">
+        <img
+          src="/icons/product-promotion-icon.svg"
+          alt="promotion"
+          className="w-6 h-6"
+        />
+        <span className="text-[12px] text-dark-gray truncate whitespace-nowrap">
+          {product.buyMore}
+        </span>
+      </div>
+    )}
+  </div>
+)}
+</div>
           </div>
         </div>
       ))}
